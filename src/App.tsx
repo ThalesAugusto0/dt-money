@@ -1,0 +1,15 @@
+import { useState } from "react";
+import { ThemeProvider } from "styled-components";
+import { defaultTheme } from "./styles/themes/default";
+import { GlobalStyle } from "./styles/global";
+
+export function App() {
+  return (
+    <ThemeProvider theme={defaultTheme}>
+      <GlobalStyle />
+      <h1>hello wordl</h1>
+    </ThemeProvider>
+  );
+}
+
+export default App;
