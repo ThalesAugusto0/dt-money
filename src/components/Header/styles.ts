@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unsafe-return */
 import { styled } from "styled-components";
 
 export const HeaderContainer = styled.header`
@@ -19,7 +20,7 @@ export const HeaderContent = styled.div`
 export const NewTransactionButton = styled.button`
   height: 50px;
   border: 0;
-  background: ${(props) => props.theme["green-500"]};
+  background: ${(props) => props.theme['green-500']};
   color: ${(props) => props.theme.white};
   font-weight: bold;
   padding: 0 1.25rem;
