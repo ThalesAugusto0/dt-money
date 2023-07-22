@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-misused-promises */
 import { zodResolver } from "@hookform/resolvers/zod";
 import { SearchFormContainer } from "./styles";
 import { MagnifyingGlass } from "phosphor-react";
@@ -28,7 +29,6 @@ export function SearchForm() {
   }
 
   return (
-    // eslint-disable-next-line @typescript-eslint/no-misused-promises
     <SearchFormContainer onSubmit={handleSubmit(handleSearchTransactions)}>
       <input
         type="text"
