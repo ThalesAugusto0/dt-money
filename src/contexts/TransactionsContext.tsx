@@ -1,8 +1,4 @@
-/* eslint-disable @typescript-eslint/no-floating-promises */
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
-/* eslint-disable @typescript-eslint/no-unsafe-argument */
 import { createContext, useEffect, useState } from "react";
-import { api } from "../lib/axios";
 
 interface Transaction {
   id: number;
@@ -15,7 +11,6 @@ interface Transaction {
 
 interface TransactionContextType {
   transactions: Transaction[];
-  fetchTransactions: (query?: string) => Promise<void>;
 }
 
 interface TransactionsProviderProps {
@@ -27,29 +22,19 @@ export const TransactionsContext = createContext({} as TransactionContextType);
 export function TransactionsProvider({ children }: TransactionsProviderProps) {
   const [transactions, setTransactions] = useState<Transaction[]>([]);
 
-  async function fetchTransactions(query?: string) {
-    const response = await api.get("/transactions", {
-      params: {
-        _sort: "createdAt",
-        _order: "desc",
-        q: query,
-      },
-    });
+  async function loadTransactions() {
+    const response = await fetch("http://localhost:3333/transactions");
+    const data = await response.json();
 
-    setTransactions(response.data);
+    setTransactions(data);
   }
 
   useEffect(() => {
-    fetchTransactions();
+    loadTransactions();
   }, []);
 
   return (
-    <TransactionsContext.Provider
-      value={{
-        transactions,
-        fetchTransactions,
-      }}
-    >
+    <TransactionsContext.Provider value={{ transactions }}>
       {children}
     </TransactionsContext.Provider>
   );
