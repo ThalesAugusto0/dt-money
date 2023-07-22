@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unsafe-return */
 import { styled } from "styled-components";
 
 export const TransactionsContainer = styled.main`
